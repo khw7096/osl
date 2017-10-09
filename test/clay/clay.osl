@@ -1,0 +1,18 @@
+shader clay(
+	float size = 100,
+	float Gamma = 100,
+	output closure color BSDF = principled_diffuse(N, 1),
+	output color COLOR = color(1),
+	output float DIS = 0,
+)
+{
+	color C = color(0.59608, 0.31373, 0.23137);
+	point Pos = P;
+	float x = Pos[0];
+	float y = Pos[1];
+	float z = Pos[2];
+	color dd = 1 - pow(cos(noise(P) * size),Gamma);
+	BSDF = C * principled_diffuse(N, 1);
+	COLOR = C;
+	DIS = dd[0];
+}

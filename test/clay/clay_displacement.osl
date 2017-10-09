@@ -1,0 +1,8 @@
+// find 4D Texture
+displacement Displacer(
+output float Fact = 0
+){
+P += (distance(Ng,P,I*0.1)*0.1)*(noise(P*10))*10;
+return;
+}
+
