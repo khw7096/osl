@@ -1,0 +1,11 @@
+shader checkNoise01(
+    float size = 40,
+	float df = 1.0,
+    output closure color BSDF = principled_diffuse(N, df))
+{
+    point Pos = P;
+    float x = Pos[0];
+    float y = Pos[1];
+    color C = noise(vector(sin(x*size) * sin(y*size*4), sin(y*size*4)*sin(x*size), Pos[2]));
+    BSDF = C * principled_diffuse(N, df);
+}
