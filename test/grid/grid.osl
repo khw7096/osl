@@ -1,0 +1,10 @@
+shader grid(
+	output closure color BSDF = principled_diffuse(N, 1),
+)
+{
+	point Pos = P;
+	float size = 200;
+	float rough = 0.2;
+	BSDF = ashikhmin_shirley(N, -normalize(I), rough, rough);
+	BSDF += principled_diffuse(N, 1)*0.3; 
+}

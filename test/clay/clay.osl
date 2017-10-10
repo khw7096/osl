@@ -1,18 +1,22 @@
 shader clay(
-	float size = 100,
-	float Gamma = 100,
 	output closure color BSDF = principled_diffuse(N, 1),
 	output color COLOR = color(1),
-	output float DIS = 0,
+	output float DISPLACE = 0,
 )
 {
-	color C = color(0.59608, 0.31373, 0.23137);
+	color C = color(0.62608, 0.28373, 0.23137);
 	point Pos = P;
 	float x = Pos[0];
 	float y = Pos[1];
 	float z = Pos[2];
-	color dd = 1 - pow(cos(noise(P) * size),Gamma);
-	BSDF = C * principled_diffuse(N, 1);
+	float size = 2;
+
+	//output
 	COLOR = C;
-	DIS = dd[0];
+	float seed = 1- clamp(noise(P*10), 0, 1); //+ noise(P*5);
+	float hand_volume = clamp(pow((seed * size -(size/2.0)    ),2),0,1);
+	vector knife = cellnoise(sin(N*10) * cos(P*10), 0.1)*0.1;
+	DISPLACE = hand_volume * knife[0] * 10;
+	BSDF = COLOR * principled_diffuse(N, 1);
+	BSDF += DISPLACE * ashikhmin_shirley(N, vector(0,0,0), 0.5, 0.5);
 }
