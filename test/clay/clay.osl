@@ -15,8 +15,8 @@ shader clay(
 	COLOR = C;
 	float seed = 1- clamp(noise(P*10), 0, 1); //+ noise(P*5);
 	float hand_volume = clamp(pow((seed * size -(size/2.0)    ),2),0,1);
-	vector knife = cellnoise(sin(N*10) * cos(P*10), 0.1)*0.1;
-	DISPLACE = hand_volume * knife[0] * 10;
+	//vector knife = cellnoise(sin(N*10) * cos(P*10), 0.1)*0.1;
+	DISPLACE = hand_volume;
 	BSDF = COLOR * principled_diffuse(N, 1);
 	BSDF += DISPLACE * ashikhmin_shirley(N, vector(0,0,0), 0.5, 0.5);
 }
