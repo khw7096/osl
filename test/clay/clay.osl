@@ -4,7 +4,7 @@ shader clay(
 	output float DISPLACE = 0,
 )
 {
-	color C = color(0.62608, 0.28373, 0.23137);
+	color C = color(0.92608, 0.28373, 0.23137);
 	point Pos = P;
 	float x = Pos[0];
 	float y = Pos[1];

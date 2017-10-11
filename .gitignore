@@ -1,1 +1,7 @@
 *.oso
+*.swp
+.DS_Store
+*.png
+!preview1m.0001.png
+!preview10cm.0001.png
+!preview1cm.0001.png
