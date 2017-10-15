@@ -1,2 +1,11 @@
-/Applications/blender/blender.app/Contents/MacOS/blender -b preview1m.blend -o ./preview1m. -F PNG -f 1
-open preview1m.0001.png
+#!/bin/bash
+
+if [ $1 = "color" ]
+then
+	/Applications/blender/blender.app/Contents/MacOS/blender -b preview1m_onlyColor.blend -o ./preview1m_onlyColor. -F PNG -f 1
+	open preview1m_onlyColor.0001.png
+else
+	/Applications/blender/blender.app/Contents/MacOS/blender -b preview1m.blend -o ./preview1m. -F PNG -f 1
+	open preview1m.0001.png
+fi
+
